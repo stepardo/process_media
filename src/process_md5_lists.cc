@@ -5,6 +5,11 @@
 #include <cstdlib>
 #include <cstring>
 
+enum {
+  Print_existing_files = 1,
+  Print_filename_clashes,
+};
+
 struct options
 {
   ~options()
@@ -18,6 +23,7 @@ struct options
   { _remote_file = strdup(s); }
   char *_local_file;
   char *_remote_file;
+  unsigned mode;
 };
 
 static options opts;
@@ -25,7 +31,11 @@ static options opts;
 void
 print_usage_and_die(char **argv)
 {
-  fprintf(stderr, "Usage: %s -l local_file -r remote_file\n", argv[0]);
+  fprintf(stderr, "Usage: %s -l local_file -r remote_file MODE\n", argv[0]);
+  fprintf(stderr,
+          "MODE:\n"
+          "           -c    Print filename clashes\n"
+          "           -p    Print files that exist remotely\n");
   exit(1);
 }
 
@@ -33,7 +43,8 @@ void
 get_options(int argc, char **argv)
 {
   int opt;
-  while ((opt = getopt(argc, argv, "l:r:")) != -1)
+  opts.mode = 0;
+  while ((opt = getopt(argc, argv, "l:r:pc")) != -1)
     {
       switch (opt)
         {
@@ -49,11 +60,17 @@ get_options(int argc, char **argv)
             opts.remote_file(optarg);
           }
           break;
+        case 'p':
+          opts.mode = Print_existing_files;
+          break;
+        case 'c':
+          opts.mode = Print_filename_clashes;
+          break;
         default:
           print_usage_and_die(argv);
         }
     }
-  if (!opts._local_file || !opts._remote_file)
+  if (!opts.mode || !opts._local_file || !opts._remote_file)
     print_usage_and_die(argv);
 }
 
@@ -70,6 +87,11 @@ public:
     free(_md5sum);
     free(_filename);
   }
+  char *md5()
+  { return _md5sum; }
+  char *filename()
+  { return _filename; }
+
 private:
   char *_md5sum;
   char *_filename;
