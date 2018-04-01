@@ -3,7 +3,9 @@
 The scenario is that I have a central media storage on a remote machine. There
 I store all incoming photos and videos in a folder structure like this:
 
+```shell
 originals/2010/2010-03-12/20-10-orignal-filename.ext
+```
 
 Now I do not upload my incoming media regularly, but I wait until this cannot
 be done manually anymore. This leaves me with a set of folders of incoming
@@ -45,5 +47,5 @@ existing filename, or it would not upload the new file.
 
 ## TODO
 
-- [] Write a script that automates everything
-- [] Write process_md5_lists
+- [ ] Write a script that automates everything
+- [ ] Write process_md5_lists
