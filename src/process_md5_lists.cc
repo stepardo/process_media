@@ -97,14 +97,59 @@ private:
   char *_filename;
 };
 
-typedef std::vector<Tupel> md5_filelist;
+typedef std::vector<Tupel *> md5_filelist;
 
 static md5_filelist local_files;
 static md5_filelist remote_files;
+
+void
+fill_list(const char *filename, md5_filelist &list)
+{
+  FILE *f = fopen(filename, "r");
+
+  if(f == 0)
+    {
+      fprintf(stderr, "Could not open file %s\n", filename);
+      exit(1);
+    }
+
+  char *line = NULL;
+  size_t len;
+  ssize_t read;
+  char md5[1000], fname[1000];
+  while ((read = getline(&line, &len, f)) > 0)
+    {
+      sscanf(line, "%s\t\t%s\n", md5, fname);
+      list.push_back(new Tupel(md5, fname));
+    }
+
+  fclose(f);
+}
+
+void
+print_existing_files(md5_filelist local_files, md5_filelist remote_files)
+{
+  for (const auto local : local_files)
+    for (const auto remote : remote_files)
+      if (!strcmp(local->md5(), remote->md5()) && !strncmp("./originals/", remote->filename(), 12))
+        printf("local %s remote %s\n", local->filename(), remote->filename());
+}
+
+void
+print_filename_clashes(md5_filelist local_files, md5_filelist remote_files)
+{}
 
 int
 main(int argc, char **argv)
 {
   get_options(argc, argv);
+  fill_list(opts._remote_file, remote_files);
+  printf("Size = %d\n", remote_files.size());
+  fill_list(opts._local_file, local_files);
+  printf("Size = %d\n", local_files.size());
+  if (opts.mode == Print_filename_clashes)
+    print_filename_clashes(local_files, remote_files);
+  else if (opts.mode == Print_existing_files)
+    print_existing_files(local_files, remote_files);
   return 0;
 }
