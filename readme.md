@@ -1,4 +1,4 @@
-This repository shall contain the tooling I need for my media storage.
+# This repository shall contain the tooling I need for my media storage.
 
 The scenario is that I have a central media storage on a remote machine. There
 I store all incoming photos and videos in a folder structure like this:
@@ -19,19 +19,19 @@ The tools in this repository shall help me with these problems:
 I want to reuse existing tools as much as possible, therefore I use exiftool,
 rsync and fdupes.
 
-== Tools ==
-=== exif.sh ===
+## Tools
+### exif.sh
 
 This is just a wrapper around exiftool that sets the correct (to my liking)
 options and lets exiftool do its thing.
 
-=== process_md5_lists ===
+### process_md5_lists
 
 This tool uses two files with the output of find:
 
-{{{
+```shell
 find originals/ -type f -exec md5sum {} \; > md5sums.txt
-}}}
+```
 
 I create such a list for the incoming (sorted and renamed) files, and one on
 the storage server.
@@ -43,7 +43,7 @@ file names.
 It basically helps me with the fact that rsync would either just overwrite an
 existing filename, or it would not upload the new file.
 
-== TODO ==
+## TODO
 
-1. Write a script that automates everything
-2. Write process_md5_lists
+- [] Write a script that automates everything
+- [] Write process_md5_lists
