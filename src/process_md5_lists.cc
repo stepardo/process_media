@@ -131,13 +131,18 @@ print_existing_files(md5_filelist local_files, md5_filelist remote_files)
 {
   for (const auto local : local_files)
     for (const auto remote : remote_files)
-      if (!strcmp(local->md5(), remote->md5()) && !strncmp("./originals/", remote->filename(), 12))
-        printf("local %s remote %s\n", local->filename(), remote->filename());
+      if (!strcmp(local->md5(), remote->md5()))
+        printf("File exists: local %s remote %s\n", local->filename(), remote->filename());
 }
 
 void
 print_filename_clashes(md5_filelist local_files, md5_filelist remote_files)
-{}
+{
+  for (const auto local : local_files)
+    for (const auto remote : remote_files)
+      if (!strcmp(local->filename(), remote->filename()))
+        printf("Clash: local %s remote %s\n", local->filename(), remote->filename());
+}
 
 int
 main(int argc, char **argv)
