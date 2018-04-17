@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for tool in "fdupes";
+for tool in "fdupes" "realpath";
 do
     if ! which $tool > /dev/null;
     then
@@ -21,7 +21,7 @@ then
     exit 1
 fi
 
-target="$1"
+target=$(realpath "$1")
 
 # ok, run fdupes and let it do its thing
 echo "Running fdupes interactively. This might take some time."
