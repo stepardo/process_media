@@ -57,5 +57,5 @@ exiftool -P -progress -ext MPG -ext MPEG '-FileName<FileModifyDate' -d $PATTERN 
 exiftool -P -progress -ext JPG '-FileName<FileModifyDate' -d $PATTERN -r $SDCARD
 # move MOV, AVI
 exiftool -P -progress -ext MOV -ext AVI '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
-exiftool -P -progress -ext MOV '-FileName<MediaCreateDate' -d $PATTEN -r $SDCARD
-exiftool -P -progress -ext MOV '-FileName<CreateDate' -d $PATTEN -r $SDCARD
+exiftool -P -progress -ext MOV '-FileName<MediaCreateDate' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MOV '-FileName<CreateDate' -d $PATTERN -r $SDCARD
