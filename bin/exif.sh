@@ -43,19 +43,19 @@ cd "$target"
 SDCARD="$source"
 PATTERN="%Y/%Y_%m_%d/%H_%M_%S_%%f%%-c.%%e"
 
-set -v # show all commands prior to execution
 set -e # exit if a command fails
+set -v # show all commands prior to execution
 
 # move all image files
 exiftool -P -progress -ext ARW -ext NEF -ext JPG '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
 # move all avchd files as well...
-exiftool -P -progress -ext MTS '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
-exiftool -P -progress -ext MP4 '-FileName<CreateDate' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MTS                   '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MP4                   '-FileName<CreateDate'       -d $PATTERN -r $SDCARD
 # move mpegs
-exiftool -P -progress -ext MPG -ext MPEG '-FileName<FileModifyDate' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MPG -ext MPEG         '-FileName<FileModifyDate'   -d $PATTERN -r $SDCARD
 # move files that to not have the DateTimeOriginal tag
-exiftool -P -progress -ext JPG '-FileName<FileModifyDate' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext JPG                   '-FileName<FileModifyDate'   -d $PATTERN -r $SDCARD
 # move MOV, AVI
-exiftool -P -progress -ext MOV -ext AVI '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
-exiftool -P -progress -ext MOV '-FileName<MediaCreateDate' -d $PATTERN -r $SDCARD
-exiftool -P -progress -ext MOV '-FileName<CreateDate' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MOV -ext AVI          '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MOV                   '-FileName<MediaCreateDate'  -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext MOV                   '-FileName<CreateDate'       -d $PATTERN -r $SDCARD
