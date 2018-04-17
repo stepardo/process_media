@@ -24,7 +24,13 @@ then
     exit 1
 fi
 
-target=$(realpath "$1")
+if [[ ! $(basename $(dirname "$1")) = "originals" ]];
+then
+    echo "Target dir must be named 'originals/2010..."
+    exit 1
+fi
+
+target="$1"
 
 # get config
 if [[ ! -e ./config.inc ]];
