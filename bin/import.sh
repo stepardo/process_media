@@ -24,6 +24,10 @@ then
 fi
 source=$(realpath $1)
 
+projectdir=$(dirname $(realpath $0))
+
+source $projectdir/helpers.inc
+
 # get config
 if [[ ! -e ./config.inc ]];
 then
@@ -42,6 +46,10 @@ do
         exit 1
     fi
 done
+
+set -e # exit if a command fails
+# check that there is enough space in $target
+ensure_enough_space_in_target $source $target
 
 for file in "$md5_list_remote";
 do
@@ -71,7 +79,6 @@ else
     echo "NOT proceeding."
 fi
 
-set -e # exit if a command fails
 set -v # show commands before executing them
 
 # first, move and rename files from source to target
@@ -83,6 +90,6 @@ echo fdupes -d -r "$target"
 
 # TODO
 # - generate md5list of target_dir
-# - check agains md5_list_remote for duplicates and delete them, and check for
+# - check against md5_list_remote for duplicates and delete them, and check for
 #   filename clashes
 # - rsync files to destination
