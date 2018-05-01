@@ -1,0 +1,7 @@
+44 -rw-r--r-- 1 stepardo stepardo 42025 Mai  1 09:56 ./2018/2018_05_01/08_39_47_DSC06723_small.jpg
+44 -rw-r--r-- 1 stepardo stepardo 41728 Mai  1 09:56 ./2018/2018_05_01/08_39_31_DSC06718_small.jpg
+44 -rw-r--r-- 1 stepardo stepardo 44825 Mai  1 09:56 ./2018/2018_05_01/08_39_40_DSC06720_small.jpg
+44 -rw-r--r-- 1 stepardo stepardo 41941 Mai  1 09:56 ./2018/2018_05_01/08_39_38_DSC06719_small.jpg
+44 -rw-r--r-- 1 stepardo stepardo 42025 Mai  1 09:56 ./2018/2018_05_01/08_39_47_DSC06723_small-1.jpg
+44 -rw-r--r-- 1 stepardo stepardo 41949 Mai  1 09:56 ./2018/2018_05_01/08_39_43_DSC06721_small.jpg
+44 -rw-r--r-- 1 stepardo stepardo 44105 Mai  1 09:56 ./2018/2018_05_01/08_39_45_DSC06722_small.jpg
