@@ -36,8 +36,6 @@ fi
 source=$(realpath $1)
 target=$(realpath $2)
 
-exit 2
-
 cd "$target"
 
 SDCARD="$source"
@@ -48,6 +46,7 @@ set -v # show all commands prior to execution
 
 # move all image files
 exiftool -P -progress -ext ARW -ext NEF -ext JPG '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
+exiftool -P -progress -ext JPEG                  '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
 # move all avchd files as well...
 exiftool -P -progress -ext MTS                   '-FileName<DateTimeOriginal' -d $PATTERN -r $SDCARD
 exiftool -P -progress -ext MP4                   '-FileName<CreateDate'       -d $PATTERN -r $SDCARD
