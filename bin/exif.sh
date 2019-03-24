@@ -60,3 +60,5 @@ exiftool -P -progress -ext MOV                   '-FileName<MediaCreateDate'  -d
 exiftool -P -progress -ext MOV                   '-FileName<CreateDate'       -d $PATTERN -r $SDCARD
 # vtech video files
 exiftool -P -progress -ext AVI                   '-FileName<FileModifyDate'   -d $PATTERN -r $SDCARD
+# kidizoom wav files
+exiftool -P -progress -ext WAV                   '-FileName<FileModifyDate'   -d $PATTERN -r $SDCARD
