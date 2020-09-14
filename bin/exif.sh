@@ -59,7 +59,7 @@ exiftool -P -progress -ext JPG                   '-FileName<FileModifyDate'   -d
 exiftool -P -progress -ext MOV -ext AVI          '-FileName<DateTimeOriginal' -d $PATTERN -r "$SDCARD"
 exiftool -P -progress -ext MOV                   '-FileName<MediaCreateDate'  -d $PATTERN -r "$SDCARD"
 exiftool -P -progress -ext MOV                   '-FileName<CreateDate'       -d $PATTERN -r "$SDCARD"
-# vtech and braun champion 3 video files
+# vtech and braun champion 3 video files and kidizoom WAV
 exiftool -P -progress -ext AVI -ext MP4 -ext WAV          '-FileName<FileModifyDate'   -d $PATTERN -r "$SDCARD"
 # 3d images
 exiftool -P -progress -ext MPO                   '-FileName<DateTimeOriginal' -d $MPOPATTERN -r "$SDCARD"
