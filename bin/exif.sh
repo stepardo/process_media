@@ -40,13 +40,14 @@ cd "$target"
 
 SDCARD="$source"
 PATTERN="%Y/%Y_%m_%d/%H_%M_%S_%%f%%-c.%%e"
+MPOPATTERN="%Y/%Y_%m_%d/3d/%H_%M_%S_%%f%%-c.%%e"
 
 set -e # exit if a command fails
 set -v # show all commands prior to execution
 
 # move all image files
 exiftool -P -progress -ext ARW -ext NEF -ext JPG '-FileName<DateTimeOriginal' -d $PATTERN -r "$SDCARD"
-exiftool -P -progress -ext JPEG                  '-FileName<DateTimeOriginal' -d $PATTERN -r "$SDCARD"
+exiftool -P -progress -ext JPEG -ext RAF         '-FileName<DateTimeOriginal' -d $PATTERN -r "$SDCARD"
 # move all avchd files as well...
 exiftool -P -progress -ext MTS                   '-FileName<DateTimeOriginal' -d $PATTERN -r "$SDCARD"
 exiftool -P -progress -ext MP4                   '-FileName<CreateDate'       -d $PATTERN -r "$SDCARD"
@@ -59,5 +60,6 @@ exiftool -P -progress -ext MOV -ext AVI          '-FileName<DateTimeOriginal' -d
 exiftool -P -progress -ext MOV                   '-FileName<MediaCreateDate'  -d $PATTERN -r "$SDCARD"
 exiftool -P -progress -ext MOV                   '-FileName<CreateDate'       -d $PATTERN -r "$SDCARD"
 # vtech and braun champion 3 video files
-exiftool -P -progress -ext AVI -ext MP4          '-FileName<FileModifyDate'   -d $PATTERN -r "$SDCARD"
-
+exiftool -P -progress -ext AVI -ext MP4 -ext WAV          '-FileName<FileModifyDate'   -d $PATTERN -r "$SDCARD"
+# 3d images
+exiftool -P -progress -ext MPO                   '-FileName<DateTimeOriginal' -d $MPOPATTERN -r "$SDCARD"
